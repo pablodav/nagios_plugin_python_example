@@ -36,21 +36,21 @@ def check(data):
     pc = len(data)
     if pc >= 2:
         status = CRITICAL
-        message['status'] = 'CRITICAL: '
+        message['summary'] = 'CRITICAL: '
     elif pc == 1:
         status = WARNING
-        message['status'] = 'WARNING: '
+        message['summary'] = 'WARNING: '
     else:
         status = OK
-        message['status'] = 'OK: '
+        message['summary'] = 'OK: '
     return status
 
 
 # Check logic starts here
 data = collect_data()
-message['status'] += check(data)
+message['status'] = check(data)
 # Add summary - you can also use more complex functions
-message['summary'] = "SharepointHealth"
+message['summary'] += "Some example"
 # Add perfdata - you can also use more complex functions
 total = len(data)
 message['perfdata'] = "alerts={};1;2;0; ".format(total)
